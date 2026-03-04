@@ -273,6 +273,7 @@ export default function Home() {
               0 25px 50px -12px rgba(0, 0, 0, 0.5),
               inset 0 1px 0 rgba(255, 255, 255, 0.2);
             animation: card-appear 0.6s ease-out;
+            margin: 0 auto;
           }
 
           @keyframes card-appear {
