@@ -178,6 +178,12 @@ export default function Home() {
             padding: 20px;
           }
 
+          @media (prefers-color-scheme: light) {
+            .login-container {
+              background: linear-gradient(135deg, #e0e7ff 0%, #f5f3ff 50%, #fae8ff 100%);
+            }
+          }
+
           /* Floating Orbs */
           .orb {
             position: absolute;
@@ -239,6 +245,12 @@ export default function Home() {
             animation: particle-float linear infinite;
           }
 
+          @media (prefers-color-scheme: light) {
+            .particle {
+              background: rgba(102, 126, 234, 0.4);
+            }
+          }
+
           @keyframes particle-float {
             0% {
               transform: translateY(100vh) scale(0);
@@ -274,6 +286,16 @@ export default function Home() {
               inset 0 1px 0 rgba(255, 255, 255, 0.2);
             animation: card-appear 0.6s ease-out;
             margin: 0 auto;
+          }
+
+          @media (prefers-color-scheme: light) {
+            .login-card {
+              background: rgba(255, 255, 255, 0.9);
+              border: 1px solid rgba(102, 126, 234, 0.2);
+              box-shadow: 
+                0 25px 50px -12px rgba(102, 126, 234, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            }
           }
 
           @keyframes card-appear {
@@ -336,6 +358,17 @@ export default function Home() {
             margin: 0;
           }
 
+          @media (prefers-color-scheme: light) {
+            .login-header h1 {
+              color: #1f2937;
+              text-shadow: none;
+            }
+
+            .login-header p {
+              color: #6b7280;
+            }
+          }
+
           /* Form */
           .login-form {
             display: flex;
@@ -359,6 +392,14 @@ export default function Home() {
             outline: none;
             transition: all 0.3s ease;
             box-sizing: border-box;
+          }
+
+          @media (prefers-color-scheme: light) {
+            .input-group input {
+              background: #f9fafb;
+              border: 2px solid #e5e7eb;
+              color: #1f2937;
+            }
           }
 
           .input-group input::placeholder {
@@ -386,6 +427,18 @@ export default function Home() {
             color: #667eea;
           }
 
+          @media (prefers-color-scheme: light) {
+            .input-group label {
+              color: #9ca3af;
+            }
+
+            .input-group input:focus ~ label,
+            .input-group input:not(:placeholder-shown) ~ label {
+              background: white;
+              color: #667eea;
+            }
+          }
+
           .input-group input:focus {
             background: rgba(255, 255, 255, 0.15);
             border-color: #667eea;
@@ -402,6 +455,12 @@ export default function Home() {
             color: rgba(255, 255, 255, 0.5);
             transition: all 0.3s ease;
             z-index: 5;
+          }
+
+          @media (prefers-color-scheme: light) {
+            .input-icon {
+              color: #9ca3af;
+            }
           }
 
           .input-group.focused .input-icon {
@@ -440,6 +499,12 @@ export default function Home() {
             color: rgba(255, 255, 255, 0.7);
           }
 
+          @media (prefers-color-scheme: light) {
+            .checkbox-container {
+              color: #6b7280;
+            }
+          }
+
           .checkbox-container input {
             display: none;
           }
@@ -452,6 +517,12 @@ export default function Home() {
             margin-right: 10px;
             position: relative;
             transition: all 0.3s ease;
+          }
+
+          @media (prefers-color-scheme: light) {
+            .checkmark {
+              border: 2px solid #d1d5db;
+            }
           }
 
           .checkbox-container input:checked ~ .checkmark {
@@ -577,6 +648,17 @@ export default function Home() {
             background: rgba(255, 255, 255, 0.2);
           }
 
+          @media (prefers-color-scheme: light) {
+            .divider {
+              color: #9ca3af;
+            }
+
+            .divider::before,
+            .divider::after {
+              background: #e5e7eb;
+            }
+          }
+
           .divider span {
             padding: 0 16px;
           }
@@ -599,6 +681,18 @@ export default function Home() {
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
+          }
+
+          @media (prefers-color-scheme: light) {
+            .social-btn {
+              border: 2px solid #e5e7eb;
+              background: #f9fafb;
+            }
+
+            .social-btn:hover {
+              background: white;
+              border-color: #d1d5db;
+            }
           }
 
           .social-btn:hover {
@@ -656,6 +750,16 @@ export default function Home() {
           .success-container p {
             color: rgba(255, 255, 255, 0.7);
             margin: 0;
+          }
+
+          @media (prefers-color-scheme: light) {
+            .success-container h2 {
+              color: #1f2937;
+            }
+
+            .success-container p {
+              color: #6b7280;
+            }
           }
 
           /* Responsive */
