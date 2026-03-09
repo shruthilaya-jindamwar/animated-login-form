@@ -3,18 +3,17 @@
 import { useState, FormEvent, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import AuthLayout from "@/components/AuthLayout";
-import { loginUser, getCurrentUser } from "@/lib/authClient";
+import { registerUser, getCurrentUser } from "@/lib/authClient";
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const current = getCurrentUser();
-    if (current) {
+    if (getCurrentUser()) {
       router.push("/dashboard");
     }
   }, [router]);
@@ -26,18 +25,24 @@ export default function LoginPage() {
     const form = e.target as HTMLFormElement;
     const email = (form.email as HTMLInputElement).value;
     const password = (form.password as HTMLInputElement).value;
+    const confirm = (form.confirm as HTMLInputElement).value;
+
+    if (password !== confirm) {
+      setError("Passwords do not match");
+      setIsLoading(false);
+      return;
+    }
 
     setTimeout(() => {
+      const result = registerUser(email, password);
       setIsLoading(false);
-      if (loginUser(email, password)) {
-        setIsSubmitted(true);
-        setTimeout(() => {
-          router.push("/dashboard");
-        }, 1000);
+      if (result.success) {
+        setSuccess(true);
+        setTimeout(() => router.push("/"), 1200);
       } else {
-        setError("Invalid credentials");
+        setError(result.message || "Unable to register");
       }
-    }, 800);
+    }, 500);
   };
 
   return (
@@ -51,19 +56,19 @@ export default function LoginPage() {
             </svg>
           </div>
         </div>
-        <h1>Welcome Back</h1>
-        <p>Enter your credentials to access your account</p>
+        <h1>Create Account</h1>
+        <p>Register a new user</p>
       </div>
 
-      {isSubmitted ? (
+      {success ? (
         <div className="success-container">
           <div className="success-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
               <polyline points="20 6 9 17 4 12" />
             </svg>
           </div>
-          <h2>Welcome!</h2>
-          <p>Redirecting you to dashboard...</p>
+          <h2>Registered!</h2>
+          <p>Redirecting to sign in...</p>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="login-form">
@@ -108,13 +113,24 @@ export default function LoginPage() {
             <div className="input-highlight"></div>
           </div>
 
-          <div className="form-options">
-            <label className="checkbox-container">
-              <input type="checkbox" />
-              <span className="checkmark"></span>
-              <span className="checkbox-label">Remember me</span>
-            </label>
-            <a href="/forgot" className="forgot-link">Forgot password?</a>
+          <div className={`input-group ${focusedField === "confirm" ? "focused" : ""}`}>
+            <div className="input-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+            </div>
+            <input
+              type="password"
+              id="confirm"
+              name="confirm"
+              placeholder=" "
+              required
+              onFocus={() => setFocusedField("confirm")}
+              onBlur={() => setFocusedField(null)}
+            />
+            <label htmlFor="confirm">Confirm Password</label>
+            <div className="input-highlight"></div>
           </div>
 
           <button
@@ -123,7 +139,7 @@ export default function LoginPage() {
             disabled={isLoading}
           >
             <span className="btn-text">
-              {isLoading ? "" : "Sign In"}
+              {isLoading ? "" : "Sign Up"}
             </span>
             {isLoading && (
               <div className="loader">
@@ -136,7 +152,7 @@ export default function LoginPage() {
           </button>
 
           <p style={{ fontSize: 13, textAlign: "center" }}>
-            Don't have an account? <a href="/register" style={{ color: "#667eea" }}>Register</a>
+            Already have an account? <a href="/" style={{ color: "#667eea" }}>Sign in</a>
           </p>
         </form>
       )}

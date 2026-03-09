@@ -1,4 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Animated Login Form
+
+This Next.js app demonstrates a fully functional animated login flow with additional pages:
+
+- **Login** (root `/`) – authenticate using `localStorage`.
+- **Register** (`/register`) – create a new user stored in localStorage.
+- **Forgot Password** (`/forgot`) – request a reset link; a token is generated and displayed.
+- **Reset Password** (`/reset?token=...`) – update password using the token.
+- **Dashboard** (`/dashboard`) – simple protected page showing current user and logout.
+
+All authentication state and users are kept in `localStorage` via the helper at `lib/authClient.ts`.
+
+The UI is built around a reusable `AuthLayout` component with animated background and shared styles.
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+
+Original README content has been replaced with this project-specific overview.
 
 ## Getting Started
 
