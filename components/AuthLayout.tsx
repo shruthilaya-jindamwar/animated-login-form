@@ -198,8 +198,8 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
           margin-bottom: 20px;
         }
         .avatar {
-          width: 80px;
-          height: 80px;
+          width: 40px;   /* even smaller */
+          height: 40px;
           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           border-radius: 50%;
           display: flex;
@@ -209,8 +209,8 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
           animation: avatar-pulse 3s ease-in-out infinite;
         }
         .avatar svg {
-          width: 40px;
-          height: 40px;
+          width: 20px;
+          height: 20px;
           color: white;
         }
         @keyframes avatar-pulse {
@@ -285,14 +285,20 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
         }
         .input-icon {
           position: absolute;
-          left: 16px;
+          left: 12px;
           top: 50%;
           transform: translateY(-50%);
-          width: 20px;
-          height: 20px;
+          width: 16px;
+          height: 16px;
           color: rgba(255, 255, 255, 0.5);
           transition: all 0.3s ease;
           z-index: 5;
+        }
+        .input-icon svg {
+          width: 100%;
+          height: 100%;
+          max-width: 16px;
+          max-height: 16px;
         }
         @media (prefers-color-scheme: light) {
           .input-icon {
@@ -379,11 +385,11 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
 
         .submit-btn {
           width: 100%;
-          padding: 16px;
+          padding: 12px 14px; /* slightly smaller vertically */
           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           border: none;
           border-radius: 12px;
-          font-size: 16px;
+          font-size: 14px;
           font-weight: 600;
           color: white;
           cursor: pointer;
@@ -473,9 +479,9 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
           justify-content: center;
         }
         .social-btn {
-          width: 50px;
-          height: 50px;
-          border-radius: 12px;
+          width: 40px;
+          height: 40px;
+          border-radius: 10px;
           border: 2px solid rgba(255, 255, 255, 0.1);
           background: rgba(255, 255, 255, 0.1);
           cursor: pointer;
